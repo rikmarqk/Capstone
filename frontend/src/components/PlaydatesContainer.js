@@ -25,7 +25,7 @@ const handlePatch = useCallback((e, selectedPlaydate) => {
             // return <Transaction transaction = {props.dynamicSearch} />
           })
         }
-        <button onClick={props.clickAction}>Click for Auth Fetch</button >
+        <button className="see-playdates-btn" onClick={props.clickAction}>See Playdates</button >
         </div>
         </>
     );

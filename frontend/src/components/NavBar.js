@@ -35,9 +35,6 @@ export default function NavBar() {
 
         <div className="middle">
             <a href= "" className= "btn btn1">Donate</a>
-            {/* <a href= "" className= "btn btn2">Donate</a>
-            <a href= "" className= "btn btn3">Donate</a>
-            <a href= "" className= "btn btn4">Donate</a> */}
         </div>
 
         </div>
