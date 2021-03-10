@@ -12,5 +12,4 @@ class ApplicationController < ActionController::API
         end
         render json:{error:"please login"} unless user
     end
-
 end

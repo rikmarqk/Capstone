@@ -18,6 +18,7 @@ state = {
   allPets: [],
   search: "",
   allPlaydates: [],
+  currentUser: null
 }
 
 componentDidMount = () => {
@@ -31,6 +32,7 @@ componentDidMount = () => {
 }
 
 testAuthRoute = () => {
+  if (this.state.currentUser){
   fetch(PLAYDATES_URL, {
     headers:{
       "Authorization": `Bearer ${localStorage.token}`
@@ -41,7 +43,10 @@ testAuthRoute = () => {
      this.setState({
        allPlaydates: playdateData
        })
-  })
+  })}
+  else {
+    console.log("logged in log")
+  }
 }
 
 submitPlaydate = (newPlaydate) => {
@@ -97,10 +102,35 @@ setCurrentUser = (user) => {
 };
 
 handleLogout = (e) => {
-  console.log(e)
-// localStorage.clear()
+  e.preventDefault()
+  console.log("logging out")
+localStorage.clear()
+this.setState({currentUser: null})
 // setIsAuthenticated({auth: false, role: "", isLoggedIn: false})
 }
+
+login = (event, username, password) => {
+  event.preventDefault();
+  event.target.reset();
+
+  // const { username, password } = this.state;
+  const user = { username, password };
+
+  fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ user }),
+  })
+    .then((r) => r.json())
+    .then((response) => {
+      console.log(response);
+      localStorage.setItem("token", response.token)
+      this.setState({currentUser: response.user});
+    });
+};
 
     render(){
     return (
@@ -109,7 +139,7 @@ handleLogout = (e) => {
             
             <div className="search-create-container">
             <SearchBar search={this.state.search} editSearch={this.editSearch}/>
-            <Login setCurrentUser={this.setCurrentUser} handleLogout={this.handleLogout}/>
+            <Login setCurrentUser={this.setCurrentUser} handleLogout={this.handleLogout} login={this.login}/>
             </div>
             <div>
             <PlaydatesContainer className="playdates-container" allPlaydates={this.state.allPlaydates} handlePlaydateDelete={this.handlePlaydateDelete} handlePlaydatePatch={this.handlePlaydatePatch} submitPlaydate={this.submitPlaydate} clickAction={this.testAuthRoute} />

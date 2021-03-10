@@ -8,33 +8,33 @@ class Login extends Component {
     password: "",
   }
 
-  login = (event) => {
-    event.preventDefault();
-    event.target.reset();
+  // login = (event) => {
+  //   event.preventDefault();
+  //   event.target.reset();
 
-    const { username, password } = this.state;
-    const user = { username, password };
+  //   const { username, password } = this.state;
+  //   const user = { username, password };
 
-    fetch("http://localhost:3000/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ user }),
-    })
-      .then((r) => r.json())
-      .then((response) => {
-        console.log(response);
-        localStorage.token = response.jwt;
-        this.props.setCurrentUser(response.user);
-      });
-  };
+  //   fetch("http://localhost:3000/login", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ user }),
+  //   })
+  //     .then((r) => r.json())
+  //     .then((response) => {
+  //       console.log(response);
+  //       localStorage.setItem("token", response.token)
+  //       this.props.setCurrentUser(response.user);
+  //     });
+  // };
 
     render() {
     return (
         <div className="login-form-div">
-            <form className="login-form" onSubmit={this.login}>
+            <form className="login-form" onSubmit={(e) => this.props.login(e, this.state.username, this.state.password)}>
           <div className="inline fields">
             <input onChange={(e)=> this.setState({username:e.target.value})} type="text" name="username" placeholder="Username" />
             <input onChange={(e)=> this.setState({password:e.target.value})} type="password" name="password" placeholder="Password"/>

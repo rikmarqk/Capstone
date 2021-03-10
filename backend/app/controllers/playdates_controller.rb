@@ -1,4 +1,6 @@
 class PlaydatesController < ApplicationController
+
+    before_action :logged_in?
     def index 
         @playdates = Playdate.all
         render json: @playdates
