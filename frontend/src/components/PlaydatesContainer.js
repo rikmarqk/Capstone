@@ -16,8 +16,8 @@ const handlePatch = useCallback((e, selectedPlaydate) => {
 
     return (
       <>
-        <div className="playdates-container">
-          <CreatePlaydateForm submitPlaydate={props.submitPlaydate} />
+        <div className="playdates-container" key="playdates-container">
+          <CreatePlaydateForm submitPlaydate={props.submitPlaydate} key="616" />
           <h2>Playdates</h2>
             {
           props.allPlaydates.map(playdate=>{
