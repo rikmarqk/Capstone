@@ -34,20 +34,22 @@ class Login extends Component {
     render() {
     return (
         <div className="login-form-div">
+            
+            <div className="login-box">
             <form className="login-form" onSubmit={(e) => this.props.login(e, this.state.username, this.state.password)}>
-          <div className="inline fields">
-            <input onChange={(e)=> this.setState({username:e.target.value})} type="text" name="username" placeholder="Username" />
-            <input onChange={(e)=> this.setState({password:e.target.value})} type="password" name="password" placeholder="Password"/>
-          </div>
-          <button className="ui button" type="submit" >
-            LOGIN
-          </button>
-        </form>
-        <form className="logout-form" onSubmit={this.props.handleLogout}>
-        <button className="ui button" type="submit" >
-            LOGOUT
-        </button>
-        </form>
+              <h1>Login</h1>
+              {/* <i class="fas fa-user" aria-hidden="true"></i> */}
+              <input onChange={(e)=> this.setState({username:e.target.value})} className="textbox" type="text" name="username" placeholder="Username" />
+              {/* <i class="fas fa-lock" aria-hidden="true"></i> */}
+              <input onChange={(e)=> this.setState({password:e.target.value})} className="textbox" type="password" name="password" placeholder="Password"/>
+              <button className="btn" type="submit" >LOGIN</button>
+            </form>
+            {/* <div className="logout-box">
+              <form className="login-form" onSubmit={this.props.handleLogout}>
+                <button className="btn-2" type="submit" >LOGOUT</button>
+              </form> */}
+            {/* </div> */}
+            </div>
         </div>
         );
     }

@@ -34,7 +34,7 @@ export default function NavBar() {
             </ul>
 
         <div className="middle">
-            <a href= "" className= "btn btn1">Donate</a>
+            <a href= "" className= "btn-animate btn1">Donate</a>
         </div>
 
         </div>
